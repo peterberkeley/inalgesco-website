@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact — Inalgesco</title>
+<meta name="description" content="Contact Inalgesco to discuss Chiller Rail or arrange a demonstration for your flight kitchen or catering fleet.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to main content</a>
+
+<header class="masthead">
+  <div class="wrap masthead__inner">
+    <a class="logo" href="index.html">
+      <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#1f74c4" stroke-width="1.6" stroke-linecap="round">
+        <path d="M12 2v20M3.5 7l17 10M3.5 17l17-10"/>
+      </svg>
+      INALGESCO
+    </a>
+    <nav class="nav" aria-label="Main">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="who-we-are.html">Who we are</a></li>
+        <li><a href="innovations.html">Innovations</a></li>
+        <li><a href="how-it-works.html">How it works</a></li>
+        <li><a href="dispatch-chiller-rail.html">Dispatch Chiller Rail</a></li>
+        <li><a href="vehicle-chiller-rail.html">Vehicle Chiller Rail</a></li>
+        <li><a href="contact.html" aria-current="page">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="rail-section">
+    <div class="wrap">
+      <span class="rail-mark"></span>
+      <h1>Contact us</h1>
+      <p class="lede">Tell us about your facility or fleet and we will come back with indicative numbers and a demonstration.</p>
+
+      <p style="margin-top:1.6rem">
+        <a href="mailto:contact@inalgesco.com" style="font-size:var(--step-1);font-weight:600">contact@inalgesco.com</a>
+      </p>
+
+      <!-- ==================================================================
+           FORM SETUP REQUIRED
+           This form needs a backend to send mail. Two easy options:
+             1. Formspree  - sign up, then replace YOUR_FORM_ID below.
+             2. Netlify    - if hosting on Netlify, replace the action with
+                             method="POST" data-netlify="true"
+           Until then the form will not deliver. The mailto link above works.
+           ================================================================== -->
+      <form class="form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <div>
+          <label for="name">Name</label>
+          <input id="name" name="name" type="text" autocomplete="name" required>
+        </div>
+        <div>
+          <label for="company">Company</label>
+          <input id="company" name="company" type="text" autocomplete="organization">
+        </div>
+        <div>
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email" required>
+        </div>
+        <div>
+          <label for="phone">Phone</label>
+          <input id="phone" name="phone" type="tel" autocomplete="tel">
+        </div>
+        <div class="form__row--full">
+          <label for="subject">Subject</label>
+          <input id="subject" name="subject" type="text">
+        </div>
+        <div class="form__row--full">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" required></textarea>
+        </div>
+        <div class="form__row--full">
+          <button class="button" type="submit" style="margin-top:0">Send enquiry</button>
+        </div>
+        <p class="form__note">We use your details only to reply to your enquiry. See our <a href="privacy.html">privacy notice</a>.</p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap footer__inner">
+    <p>&copy; 2026 Inalgesco. Chiller Rail patent pending.</p>
+    <ul>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="privacy.html">Privacy notice</a></li>
+    </ul>
+  </div>
+</footer>
+
+</body>
+</html>

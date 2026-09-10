@@ -1,0 +1,513 @@
+/* ==========================================================================
+   Inalgesco — stylesheet
+   Palette, type and layout tokens live here. Change a value once and it
+   updates across every page.
+   ========================================================================== */
+
+:root {
+  /* Colour ---------------------------------------------------------------
+     Cold-chain palette taken off the existing brand blue. */
+  --ink:        #10202e;   /* primary text — deep cold slate            */
+  --ink-soft:   #4a5c6b;   /* secondary text                            */
+  --rail:       #c3ced6;   /* the rail line and hairline rules          */
+  --frost:      #eef3f6;   /* page tint / alternating band              */
+  --white:      #ffffff;
+  --brand:      #1f74c4;   /* Inalgesco blue — links, accents           */
+  --brand-dark: #14538f;   /* hover / pressed                           */
+  --steel:      #2b3d4a;   /* footer, dark band                         */
+
+  /* Type ---------------------------------------------------------------- */
+  --font: "Archivo", "Helvetica Neue", Arial, sans-serif;
+
+  /* Scale — 1.25 ratio, tabular figures for the data points ------------- */
+  --step--1: clamp(0.83rem, 0.8rem + 0.15vw, 0.9rem);
+  --step-0:  clamp(1rem, 0.96rem + 0.2vw, 1.09rem);
+  --step-1:  clamp(1.25rem, 1.15rem + 0.4vw, 1.5rem);
+  --step-2:  clamp(1.55rem, 1.35rem + 0.8vw, 2.1rem);
+  --step-3:  clamp(1.95rem, 1.55rem + 1.6vw, 2.9rem);
+  --step-4:  clamp(2.4rem, 1.7rem + 2.8vw, 4rem);
+
+  /* Layout -------------------------------------------------------------- */
+  --measure: 68ch;         /* max line length for body copy             */
+  --page:    1180px;
+  --gutter:  clamp(1.25rem, 4vw, 3rem);
+}
+
+/* Reset ------------------------------------------------------------------ */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  font-size: var(--step-0);
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--white);
+  font-variant-numeric: tabular-nums;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+h1, h2, h3 { line-height: 1.12; margin: 0; font-weight: 600; letter-spacing: -0.015em; }
+h1 { font-size: var(--step-4); }
+h2 { font-size: var(--step-3); }
+h3 { font-size: var(--step-1); }
+
+p { margin: 0 0 1.1em; max-width: var(--measure); }
+
+a { color: var(--brand); text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
+a:hover { color: var(--brand-dark); }
+
+:focus-visible {
+  outline: 3px solid var(--brand);
+  outline-offset: 3px;
+}
+
+/* Skip link -------------------------------------------------------------- */
+.skip {
+  position: absolute; left: -9999px;
+  background: var(--ink); color: var(--white);
+  padding: 0.7rem 1rem; z-index: 100;
+}
+.skip:focus { left: 1rem; top: 1rem; }
+
+/* Shell ------------------------------------------------------------------ */
+.wrap {
+  width: 100%;
+  max-width: var(--page);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* ==========================================================================
+   Header + navigation
+   ========================================================================== */
+
+.masthead {
+  border-bottom: 1px solid var(--rail);
+  background: var(--white);
+  position: sticky; top: 0; z-index: 50;
+}
+
+.masthead__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 2rem;
+  padding-block: 1.1rem;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: var(--step-1);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+  text-decoration: none;
+}
+.logo:hover { color: var(--ink); }
+.logo svg { flex: none; }
+
+/* Nav ------------------------------------------------------------------- */
+.nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.4rem;
+  margin: 0; padding: 0;
+  list-style: none;
+}
+
+.nav a {
+  display: inline-block;
+  padding: 0.3rem 0;
+  font-size: var(--step--1);
+  font-weight: 500;
+  color: var(--ink-soft);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+}
+.nav a:hover { color: var(--ink); border-bottom-color: var(--rail); }
+
+/* Current page marker */
+.nav a[aria-current="page"] {
+  color: var(--ink);
+  border-bottom-color: var(--brand);
+}
+
+/* ==========================================================================
+   The rail — the through-line motif.
+   A single hairline runs down the page; section markers sit on it.
+   ========================================================================== */
+
+.rail-section {
+  position: relative;
+  padding-block: clamp(3rem, 7vw, 5.5rem);
+}
+
+/* Hidden by default; the spine only appears when there's gutter room. */
+.rail-mark { display: none; }
+
+@media (min-width: 60rem) {
+  /* Spine and marks are both positioned against .wrap so they stay in
+     alignment at any viewport width. The spine sits in the wrap's own
+     left padding, clear of the text column. */
+  .rail-section > .wrap {
+    position: relative;
+  }
+
+  .rail-section > .wrap::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: calc(clamp(3rem, 7vw, 5.5rem) * -1);
+    bottom: calc(clamp(3rem, 7vw, 5.5rem) * -1);
+    width: 1px;
+    background: var(--rail);
+  }
+
+  /* the tap-off point where a cart draws air off the rail */
+  .rail-section > .wrap > .rail-mark {
+    display: block;
+    position: absolute;
+    left: -4px;
+    top: 0.55em;
+    width: 9px; height: 9px;
+    background: var(--brand);
+    border-radius: 50%;
+  }
+}
+
+/* ==========================================================================
+   Hero
+   ========================================================================== */
+
+.hero {
+  background: var(--frost);
+  border-bottom: 1px solid var(--rail);
+  padding-block: clamp(3.5rem, 9vw, 7rem);
+}
+
+.hero h1 {
+  max-width: 24ch;
+  font-weight: 700;
+}
+
+.hero__lede {
+  font-size: var(--step-1);
+  color: var(--ink-soft);
+  max-width: 46ch;
+  margin-top: 1.4rem;
+}
+
+/* Hero holds the headline left and a temperature read-out right, so the
+   space beside the headline carries information instead of sitting empty. */
+@media (min-width: 62rem) {
+  .hero__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 4fr);
+    gap: 3.5rem;
+    align-items: end;
+  }
+}
+
+.readout {
+  border-top: 3px solid var(--brand);
+  padding-top: 1.1rem;
+}
+.readout dl { margin: 0; }
+.readout div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--rail);
+}
+.readout dt {
+  font-size: var(--step--1);
+  color: var(--ink-soft);
+}
+.readout dd {
+  margin: 0;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.hero__meaning {
+  margin-top: 2.5rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--rail);
+  font-size: var(--step--1);
+  color: var(--ink-soft);
+  max-width: 40ch;
+}
+.hero__meaning b { color: var(--ink); font-weight: 600; }
+
+/* ==========================================================================
+   Figure blocks — the real numbers get room to breathe
+   ========================================================================== */
+
+.figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: 1px;
+  margin: 2.5rem 0 0;
+  background: var(--rail);
+  border: 1px solid var(--rail);
+}
+
+.figure {
+  background: var(--white);
+  padding: 1.5rem 1.4rem;
+}
+
+.figure__value {
+  display: block;
+  font-size: var(--step-3);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+}
+
+.figure__label {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: var(--step--1);
+  color: var(--ink-soft);
+  line-height: 1.45;
+}
+
+/* ==========================================================================
+   Two-column content
+   ========================================================================== */
+
+.split {
+  display: grid;
+  gap: clamp(1.75rem, 4vw, 3.5rem);
+}
+@media (min-width: 52rem) {
+  .split--halves { grid-template-columns: 1fr 1fr; }
+  .split--lead   { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
+}
+
+/* ==========================================================================
+   Cards for the two products
+   ========================================================================== */
+
+.products {
+  display: grid;
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+@media (min-width: 52rem) {
+  .products { grid-template-columns: 1fr 1fr; }
+}
+
+.product {
+  border: 1px solid var(--rail);
+  border-top: 3px solid var(--brand);
+  padding: 1.75rem 1.6rem 1.9rem;
+  display: flex;
+  flex-direction: column;
+}
+.product h3 { margin-bottom: 0.7rem; }
+.product p  { flex: 1; }
+
+.product__link {
+  align-self: start;
+  font-weight: 600;
+  font-size: var(--step--1);
+}
+
+/* ==========================================================================
+   Advantage lists
+   ========================================================================== */
+
+.benefits {
+  margin: 2rem 0 0;
+  padding: 0;
+  list-style: none;
+  max-width: var(--measure);
+}
+
+.benefits li {
+  position: relative;
+  padding: 0.85rem 0 0.85rem 1.9rem;
+  border-bottom: 1px solid var(--rail);
+}
+.benefits li:first-child { border-top: 1px solid var(--rail); }
+
+/* small tap-off mark, echoing the rail */
+.benefits li::before {
+  content: "";
+  position: absolute;
+  left: 0.15rem; top: 1.42em;
+  width: 0.55rem; height: 1px;
+  background: var(--brand);
+}
+
+/* ==========================================================================
+   People
+   ========================================================================== */
+
+.people {
+  display: grid;
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+@media (min-width: 46rem) {
+  .people { grid-template-columns: 1fr 1fr; }
+}
+
+.person {
+  padding-top: 1.2rem;
+  border-top: 3px solid var(--ink);
+}
+.person h3 { margin-bottom: 0.15rem; }
+
+.person__years {
+  font-size: var(--step--1);
+  font-weight: 600;
+  color: var(--brand);
+  letter-spacing: 0.02em;
+}
+.person p { margin-top: 0.7rem; color: var(--ink-soft); }
+
+/* ==========================================================================
+   Call to action band
+   ========================================================================== */
+
+.cta-band {
+  background: var(--steel);
+  color: var(--white);
+  padding-block: clamp(3rem, 7vw, 4.5rem);
+}
+.cta-band h2 { color: var(--white); }
+.cta-band p  { color: #c8d4dd; margin-top: 1rem; }
+
+.button {
+  display: inline-block;
+  margin-top: 1.6rem;
+  padding: 0.85rem 1.6rem;
+  background: var(--brand);
+  color: var(--white);
+  font-weight: 600;
+  font-size: var(--step-0);
+  text-decoration: none;
+  border: 2px solid var(--brand);
+}
+.button:hover {
+  background: var(--white);
+  color: var(--brand-dark);
+  border-color: var(--white);
+}
+
+.button--ghost {
+  background: transparent;
+  border-color: var(--rail);
+  color: var(--ink);
+}
+.button--ghost:hover {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--white);
+}
+
+/* ==========================================================================
+   Contact form
+   ========================================================================== */
+
+.form {
+  display: grid;
+  gap: 1.1rem;
+  max-width: 34rem;
+  margin-top: 2rem;
+}
+@media (min-width: 40rem) {
+  .form { grid-template-columns: 1fr 1fr; }
+  .form .form__row--full { grid-column: 1 / -1; }
+}
+
+.form label {
+  display: block;
+  font-size: var(--step--1);
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+}
+
+.form input,
+.form textarea {
+  width: 100%;
+  font-family: inherit;
+  font-size: var(--step-0);
+  color: var(--ink);
+  padding: 0.65rem 0.75rem;
+  border: 1px solid var(--ink-soft);
+  background: var(--white);
+  border-radius: 0;
+}
+.form textarea { min-height: 8rem; resize: vertical; }
+
+.form input:focus,
+.form textarea:focus { border-color: var(--brand); }
+
+.form__note {
+  font-size: var(--step--1);
+  color: var(--ink-soft);
+  grid-column: 1 / -1;
+  margin: 0;
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+
+.footer {
+  border-top: 1px solid var(--rail);
+  background: var(--frost);
+  padding-block: 2.5rem;
+  font-size: var(--step--1);
+  color: var(--ink-soft);
+}
+
+.footer__inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 2.5rem;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.footer ul {
+  display: flex; flex-wrap: wrap;
+  gap: 0.4rem 1.4rem;
+  margin: 0; padding: 0; list-style: none;
+}
+.footer p { margin: 0; max-width: none; }
+
+/* ==========================================================================
+   Utilities
+   ========================================================================== */
+
+.lede {
+  font-size: var(--step-1);
+  color: var(--ink-soft);
+  max-width: 52ch;
+}
+.mt-0 { margin-top: 0; }
+.eyebrow-none { }
+.band-frost { background: var(--frost); border-block: 1px solid var(--rail); }
+.patent {
+  font-size: var(--step--1);
+  color: var(--ink-soft);
+  margin-top: 0.6rem;
+}
+
+/* Respect reduced motion ------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
