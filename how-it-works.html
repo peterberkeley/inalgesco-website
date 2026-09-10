@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>How it works — Inalgesco</title>
-<meta name="description" content="A plenum forces HEPA or UV-filtered cold air into each airline cart at constant pressure, using the cart itself as the cooler. Temperatures are logged wirelessly.">
+<title>How ChillRail works — system principles and specification</title>
+<meta name="description" content="A plenum forces HEPA-filtered, UV-treated refrigerated air into each airline cart at constant pressure through cart-operated dampers, logging internal cart temperature every two seconds.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -25,11 +25,11 @@
     <nav class="nav" aria-label="Main">
       <ul>
         <li><a href="index.html">Home</a></li>
-        <li><a href="who-we-are.html">Who we are</a></li>
-        <li><a href="innovations.html">Innovations</a></li>
+        <li><a href="the-problem.html">The problem</a></li>
         <li><a href="how-it-works.html" aria-current="page">How it works</a></li>
-        <li><a href="dispatch-chiller-rail.html">Dispatch Chiller Rail</a></li>
-        <li><a href="vehicle-chiller-rail.html">Vehicle Chiller Rail</a></li>
+        <li><a href="vehicle-chillrail.html">Vehicle ChillRail</a></li>
+        <li><a href="dispatch-chillrail.html">Dispatch ChillRail</a></li>
+        <li><a href="evidence.html">Evidence</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
     </nav>
@@ -41,9 +41,9 @@
   <section class="rail-section">
     <div class="wrap">
       <span class="rail-mark"></span>
-      <h1>How Chiller Rail works</h1>
-      <p class="patent">Patent pending</p>
-      <p class="lede">The cart becomes the cooler. That single change is what removes the panelling, the sizing constraints and most of the running cost.</p>
+      <h1>How ChillRail works</h1>
+      <p class="patent">US Patent Application 17/893,958 &mdash; Notice of Allowance, August 2024</p>
+      <p class="lede">Make the cart the cooled volume. Everything else follows from that one change.</p>
     </div>
   </section>
 
@@ -51,13 +51,54 @@
     <div class="wrap">
       <span class="rail-mark"></span>
       <div class="split split--lead">
-        <div><h2>The air path</h2></div>
+        <div><h2>System principles</h2></div>
         <div>
-          <p>A plenum generates cold air, which is forced to each airline cart through lightweight HEPA or UV-filtered ducts. Refrigerated air enters the cart at constant pressure and returns through the lower vent.</p>
-          <p>By exploiting the properties of the airline cart itself, the cart becomes the cooled volume. Product temperature is maintained without panelling the vehicle or the dispatch cooler.</p>
-          <p>Ovens, canisters and any carts without vents are loaded into a purpose-designed area so they chill correctly alongside the rail.</p>
+          <p>A plenum generates filtered refrigerated air and forces it into the airline carts through a series of ducts and cart-operated dampers.</p>
+          <p>Air enters each cart at constant pressure and returns through the lower vent. Internal cart temperature is recorded and transmitted wirelessly to the cloud.</p>
+          <p>Carts without door vents are served through a dry-ice drawer, into which ChillRail feeds the same pressurised air.</p>
         </div>
       </div>
+      <figure class="shot shot--diagram">
+        <img src="chillrail-schematic.png" alt="Technical elevation and plan drawing of the ChillRail installation showing duct run, damper positions and cart bays" loading="lazy">
+        <figcaption>Elevation, section and plan of a typical installation.</figcaption>
+      </figure>
+
+    </div>
+  </section>
+
+  <section class="rail-section">
+    <div class="wrap">
+      <span class="rail-mark"></span>
+      <h2>What changes for the driver</h2>
+      <p class="lede">Almost nothing. That is deliberate.</p>
+      <ul class="benefits">
+        <li><strong>Loading</strong> &mdash; carts go on exactly as they do today, strapped in the same way with a ratchet strap</li>
+        <li><strong>Operation</strong> &mdash; air starts when a cart is placed against the rail and shuts off when it is removed. No driver input</li>
+        <li><strong>Ovens and loose items</strong> &mdash; a refrigerated box mounted at high level above the carts holds ovens, milk, even ice cream</li>
+        <li><strong>Unvented carts</strong> &mdash; served through the dry-ice drawer slots instead of door vents</li>
+        <li><strong>Records</strong> &mdash; captured automatically. Nobody writes anything down</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="rail-section band-frost">
+    <div class="wrap">
+      <span class="rail-mark"></span>
+      <h2>Specification</h2>
+      <div class="figures">
+        <div class="figure"><span class="figure__value">4&deg;C</span><span class="figure__label">Standard mode / 39.2&deg;F</span></div>
+        <div class="figure"><span class="figure__value">2&deg;C</span><span class="figure__label">Enhanced bar-cart mode / 35.6&deg;F</span></div>
+        <div class="figure"><span class="figure__value">2 sec</span><span class="figure__label">Logging interval, per cart, with GPS</span></div>
+      </div>
+      <ul class="benefits">
+        <li><strong>Power</strong> &mdash; inverter driven, generates its own supply regardless of vehicle make, model or age. Net Zero carbon</li>
+        <li><strong>Monitoring</strong> &mdash; built-in logger records each cart and transmits to the cloud with location. Stored indefinitely or exported as CSV</li>
+        <li><strong>Hygiene</strong> &mdash; food-grade stainless steel or powder coat; Armacell&reg; insulation with Microban&reg; to inhibit mould and bacteria</li>
+        <li><strong>Air treatment</strong> &mdash; inline UV filter plus HEPA-style particulate filtration; condensate expelled, no standing tanks</li>
+        <li><strong>Cleaning</strong> &mdash; flushable to guidelines, water resistant</li>
+        <li><strong>Security</strong> &mdash; designed to screening directives with non-standard tamper-evident fixings to TCCA, FAA and CAA standards; vents designed to prevent concealment</li>
+        <li><strong>Install and training</strong> &mdash; fitted by our own employees, with on-site training for all staff during installation</li>
+      </ul>
     </div>
   </section>
 
@@ -65,32 +106,30 @@
     <div class="wrap">
       <span class="rail-mark"></span>
       <div class="split split--lead">
-        <div><h2>Installation and scale</h2></div>
+        <div><h2>End-to-end proof</h2></div>
         <div>
-          <p>Chiller Rail fits quickly within an existing cooler, or stands alone in a facility that has no traditional panelled cold room at all.</p>
-          <p>Because the system scales to match the volume actually being cooled, cost falls further again — you cool the flights you are dispatching, not the whole building.</p>
+          <p>Every cart&rsquo;s internal temperature is logged every two seconds against the vehicle&rsquo;s GPS position, visible live on desktop or mobile.</p>
+          <p>That gives you a continuous chill-chain record from dispatch cooler to aircraft door &mdash; the due diligence that neither refrigerated trucks nor dry ice can produce.</p>
         </div>
       </div>
-    </div>
-  </section>
+      <figure class="shot">
+        <img src="dashboard-live-tracking.png" alt="Mobile dashboard listing each cart with its current temperature and trend chart" loading="lazy">
+        <figcaption>Every cart, live, on a phone or desktop.</figcaption>
+      </figure>
 
-  <section class="rail-section band-frost">
-    <div class="wrap">
-      <span class="rail-mark"></span>
-      <div class="split split--lead">
-        <div><h2>Temperature records</h2></div>
-        <div>
-          <p>Internal cart temperature is recorded wirelessly to a central system. Records are captured by flight without anyone having to write anything down, which removes both the labour and the gap in the audit trail.</p>
-        </div>
-      </div>
+      <figure class="shot">
+        <img src="gps-route-trace.jpg" alt="Map showing the GPS route trace of a catering vehicle across a delivery run" loading="lazy">
+        <figcaption>The same record carries vehicle position, giving a continuous chill-chain trail from kitchen to aircraft.</figcaption>
+      </figure>
+
     </div>
   </section>
 
   <section class="cta-band">
     <div class="wrap">
-      <h2>Arrange a demonstration</h2>
-      <p>We will walk through the numbers for your facility or fleet and show the system running.</p>
-      <a class="button" href="contact.html">Get in touch</a>
+      <h2>Book a 30-day paired trial</h2>
+      <p>Fit ChillRail to one truck, leave an identical truck unmodified, and run both on live routes for 30 days. Fuel, service calls, pull-out temperatures and cold-chain compliance all become your own audited data before you commit to anything.</p>
+      <a class="button" href="contact.html">Arrange a trial</a>
     </div>
   </section>
 
@@ -98,7 +137,7 @@
 
 <footer class="footer">
   <div class="wrap footer__inner">
-    <p>&copy; 2026 Inalgesco. Chiller Rail patent pending.</p>
+    <p>&copy; 2026 Inalgesco. ChillRail &mdash; US Patent Application 17/893,958, Notice of Allowance August 2024.</p>
     <ul>
       <li><a href="contact.html">Contact</a></li>
       <li><a href="privacy.html">Privacy notice</a></li>
