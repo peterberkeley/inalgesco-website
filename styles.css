@@ -4,7 +4,7 @@
    updates across every page.
    ========================================================================== */
 
-:root {
+/* figures */ .shot { margin: 2.25rem 0 0; max-width: 100%; } .shot img { width: 100%; height: auto; display: block; border: 1px solid var(--rail); background: var(--frost); } .shot figcaption { margin-top: 0.65rem; font-size: var(--step--1); color: var(--ink-soft); max-width: 60ch; } .shot--diagram img { background: var(--white); padding: 1.25rem; } .shots { display: grid; gap: 1.25rem; margin-top: 2.25rem; } @media (min-width: 52rem) { .shots { grid-template-columns: 1fr 1fr; } .shots .shot { margin-top: 0; } } @media (min-width: 62rem) { .split--lead .shot { margin-top: 0; } } :root {
   /* Colour ---------------------------------------------------------------
      Cold-chain palette taken off the existing brand blue. */
   --ink:        #10202e;   /* primary text — deep cold slate            */
