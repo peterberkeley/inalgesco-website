@@ -42,14 +42,20 @@
     <div class="wrap">
       <span class="rail-mark"></span>
       <h1>Privacy notice</h1>
-      <p class="patent">Last updated 10 September 2026</p>
+      <p class="patent">Last updated 11 September 2026</p>
 
       <div style="max-width:68ch;margin-top:2rem">
         <p>This notice explains what personal information Inalgesco collects through this website, why we collect it, and what rights you have over it. If you have any questions, email <a href="mailto:peter.berkeley@inalgesco.com">peter.berkeley@inalgesco.com</a>.</p>
 
         <h2 style="margin-top:2.5rem">What we collect</h2>
-        <p>We collect only what you send us. If you complete the enquiry form or email us, we receive your name, company, email address, telephone number and the content of your message.</p>
+        <p>If you complete the enquiry form or email us, we receive your name, company, email address, telephone number and the content of your message. We also record limited information about which pages are viewed, described under Visitor measurement below.</p>
         <p>Our website host may also collect standard technical data such as IP address, browser type and pages visited, in order to serve the site and keep it secure.</p>
+
+        <h2 style="margin-top:2.5rem">Visitor measurement</h2>
+        <p>We record which pages are viewed on this site, the page or search that referred you, the time of the visit, and the approximate area you are browsing from, so that we can see which parts of the site are useful.</p>
+        <p>We do not use cookies for this, and nothing is stored on your device. We do not track you across other websites, and we do not use any advertising or third-party analytics service.</p>
+        <p>Your IP address is used only to work out an approximate area at the moment you arrive. It is not stored. What we keep is the page, the time, that approximate area, and a one-way code that lets us tell one visit from another without identifying you or allowing us to work backwards to your address.</p>
+        <p>This information is held on our own server rather than a third-party platform. Our lawful basis is legitimate interests: understanding how our own website is used. You can object at any time using the contact address below.</p>
 
         <h2 style="margin-top:2.5rem">Why we use it</h2>
         <p>We use your details for one purpose: to respond to your enquiry and, where relevant, to continue a business conversation about ChillRail. We do not sell your information, and we do not use it for advertising.</p>
@@ -82,5 +88,13 @@
   </div>
 </footer>
 
+<script>
+/* Visitor measurement. No cookies, and nothing is stored on your device.
+   Sends only the page and referrer to our own server; see privacy.html. */
+(function(){try{
+  var d=JSON.stringify({p:location.pathname,t:document.title,r:document.referrer});
+  navigator.sendBeacon('https://berkeleyhome.net/ingest/visit',new Blob([d],{type:'text/plain'}));
+}catch(e){}})();
+</script>
 </body>
 </html>

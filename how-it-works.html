@@ -145,5 +145,13 @@
   </div>
 </footer>
 
+<script>
+/* Visitor measurement. No cookies, and nothing is stored on your device.
+   Sends only the page and referrer to our own server; see privacy.html. */
+(function(){try{
+  var d=JSON.stringify({p:location.pathname,t:document.title,r:document.referrer});
+  navigator.sendBeacon('https://berkeleyhome.net/ingest/visit',new Blob([d],{type:'text/plain'}));
+}catch(e){}})();
+</script>
 </body>
 </html>
