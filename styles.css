@@ -12,8 +12,8 @@
   --rail:       #c3ced6;   /* the rail line and hairline rules          */
   --frost:      #eef3f6;   /* page tint / alternating band              */
   --white:      #ffffff;
-  --brand:      #1f74c4;   /* Inalgesco blue — links, accents           */
-  --brand-dark: #14538f;   /* hover / pressed                           */
+  --brand:      #0072ce;   /* Inalgesco blue — sampled from the logo    */
+  --brand-dark: #00569b;   /* hover / pressed                           */
   --steel:      #2b3d4a;   /* footer, dark band                         */
 
   /* Type ---------------------------------------------------------------- */
@@ -103,15 +103,14 @@ a:hover { color: var(--brand-dark); }
 .logo {
   display: inline-flex;
   align-items: center;
-  gap: 0.55rem;
-  font-size: var(--step-1);
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  color: var(--ink);
   text-decoration: none;
 }
-.logo:hover { color: var(--ink); }
-.logo svg { flex: none; }
+.logo img {
+  display: block;
+  height: 22px;          /* the lockup is wide; keep it modest beside the nav */
+  width: auto;
+}
+.logo:hover img { opacity: 0.82; }
 
 /* Nav ------------------------------------------------------------------- */
 .nav ul {
@@ -427,7 +426,7 @@ a:hover { color: var(--brand-dark); }
   max-width: 34rem;
   margin-top: 2rem;
 }
-@media (min-width: 40rem) {
+@media (min-width: 40rem) { .logo img { height: 26px; }
   .form { grid-template-columns: 1fr 1fr; }
   .form .form__row--full { grid-column: 1 / -1; }
 }
