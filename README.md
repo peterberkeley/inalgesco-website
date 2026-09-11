@@ -1,91 +1,92 @@
 # Inalgesco website
 
-Static replacement for the Wix site at inalgesco.com. Plain HTML and CSS — no
-build step, no framework, no dependencies. Open any `.html` file in a browser
-and it works.
+Static site for inalgesco.com. Plain HTML and CSS, no build step, no framework,
+no dependencies. Open any `.html` file in a browser and it works.
+
+Replaced the previous Wix site. Live on GitHub Pages.
 
 ## Files
 
 ```
 index.html                  Home
-who-we-are.html             Peter and Derek
-innovations.html            The two systems, overview
+the-problem.html            Why cart cooling fails on the ramp
 how-it-works.html           The air path, install, temperature records
-dispatch-chiller-rail.html  Product page + advantages
-vehicle-chiller-rail.html   Product page + advantages
+vehicle-chillrail.html      Vehicle ChillRail: high loader retrofit
+dispatch-chillrail.html     Dispatch ChillRail: the overhead oven box
+dispatch-chiller-rail.html  Dispatch Chiller Rail: the warehouse system
+evidence.html               Field data and inspection findings
 contact.html                Enquiry form
-privacy.html                Privacy notice (rewritten — see note below)
+privacy.html                Privacy notice
 styles.css                  All styling, tokens at the top
-images/                     Put downloaded Wix images here (create this folder)
+*.jpg / *.png               Images, stored flat at the repo root
 ```
+
+### The three product names are deliberately similar
+
+`vehicle-chillrail`, `dispatch-chillrail` and `dispatch-chiller-rail` are three
+different products. The last two differ only by a space and two letters. This is
+intentional and has been confirmed. Do not "tidy" them into one name.
 
 ## Editing
 
-**Text** — open the `.html` file and edit between the tags. Nothing is
-generated, so what you see is what ships.
+**Text**: open the `.html` file and edit between the tags. Nothing is generated,
+so what you see is what ships.
 
-**Colours, type, spacing** — all controlled by variables at the top of
-`styles.css` under `:root`. Change `--brand` and every accent updates.
+**Colours, type, spacing**: variables at the top of `styles.css` under `:root`.
+Change `--brand` and every accent updates.
 
-**Navigation** — the menu is repeated in each page's `<header>`. If you add a
-page, add the `<li>` to all of them. (This is the one downside of no build
-step; with 8 pages it is manageable.)
+**Navigation**: the menu is repeated in each page's `<header>`. There is no
+template at runtime. If you add or reorder a page you must edit all nine files.
 
-## Two things still to do
+**Images**: stored flat at the repo root, not in a subfolder. Reference them as
+`<img src="high-loader-installed.jpg" alt="...">`. Always write real alt text.
 
-### 1. The contact form needs a backend
+## Editorial rules
 
-Static hosting cannot send email. `contact.html` currently points at a
-Formspree placeholder. Pick one:
+These are not style preferences. They exist for commercial and legal reasons.
 
-- **Formspree** — free tier, sign up at formspree.io, then replace
-  `YOUR_FORM_ID` in `contact.html` with the ID they give you.
-- **Netlify Forms** — if you host on Netlify, change the `<form>` tag to
-  `<form class="form" name="enquiry" method="POST" data-netlify="true">`
-  and it works with no third party.
+- **Never name an equipment manufacturer in a failure claim.** Naming a maker in
+  a failure context invites complaint and adds nothing to the argument.
+- **Never publish the Qatar Aviation Catering analysis**, the client name, their
+  fleet size, the total contract value, or the EXW unit price. Per-truck figures
+  are fine. The rest is commercially sensitive.
+- The patent is **US Application 17/893,958, Notice of Allowance August 2024**.
+  It is not "patent pending", which undersells it.
 
-The `mailto:` link to contact@inalgesco.com works regardless — **confirm that
-address actually delivers to a mailbox you read.**
+## Contact form
 
-### 2. Images
+Formspree, endpoint `https://formspree.io/f/maeyvewz`, delivering to
+peter.berkeley@inalgesco.com. Tested and working. Free tier caps at 50
+submissions per month, so watch the volume if a campaign drives traffic.
 
-The photographs on the Wix site are hosted on Wix's CDN and are not included
-here. Download them from the Wix media manager (Site → Media), drop them in
-`images/`, and add them where you want, e.g.
-
-```html
-<img src="images/chillrail-installed.jpg"
-     alt="Chiller Rail ducting installed along a high loader interior">
-```
-
-Always write real `alt` text — it matters for both accessibility and search.
-
-## What changed from the Wix site
-
-Fixes applied while rebuilding:
-
-| Issue on Wix site | Status |
-|---|---|
-| Social icon linked to `linkedin.com/company/wix-com` | Removed — add your own LinkedIn when ready |
-| Copyright read ©2021 | Now 2026 |
-| Privacy notice dated Feb 2021, referenced a Facebook app and an "App" that don't exist | Rewritten in plain English, scoped to what the site actually does |
-| Contact page lost the navigation menu | Navigation now present on every page |
-| "Dispatch cooler Rail" vs "Dispatch Chiller Rail" | Named consistently throughout |
-| "does not significantly effect the payload" / "making it effect the cooler" | Corrected to *affect*; the second sentence reworded |
-| No skip link, no visible focus states | Both added |
-
-Still worth adding when you have it: customer names, a case study, test data,
-and photographs of installed systems. The cost claims are strong but currently
-unsupported, and an airline procurement team will ask for evidence.
+The page also offers a `mailto:` link to contact@inalgesco.com. Confirm that
+address actually delivers to a mailbox someone reads, or remove it.
 
 ## Deploying
 
-Any static host. All free for a site this size:
+GitHub Pages, `main` branch, root folder. Pushing to `main` publishes. The
+`CNAME` file pins the custom domain to the apex, `inalgesco.com`, and GitHub
+issues a Let's Encrypt certificate covering both the apex and `www`.
 
-- **GitHub Pages** — push this repo, then Settings → Pages → deploy from
-  `main` branch, root folder.
-- **Netlify** or **Cloudflare Pages** — connect the repo, no build command
-  needed, publish directory is the repo root.
+### DNS: read this before touching anything
 
-Then point `inalgesco.com` at it by updating the DNS records at 123-Reg. Keep
-the Wix site live until the new one is up and you are happy with it.
+**DNS is hosted at Wix, not at 123-Reg.** The nameservers are `ns10.wixdns.net`
+and `ns11.wixdns.net`. All DNS edits happen inside `manage.wix.com`.
+
+**Do not click 123-Reg's "switch to our nameservers" button.** It will wipe the
+MX records and kill both company mailboxes. Mail is on Microsoft 365 and depends
+entirely on the MX record currently published in the Wix zone.
+
+Wix cannot be cancelled until the zone is migrated properly: recreate every
+record at the new host first, verify, then switch nameservers.
+
+## Working on this repo
+
+Use the GitHub CLI (`gh`) and a local clone. Do not edit through the browser and
+do not upload files from the Downloads folder. Stale copies from Downloads have
+twice reverted completed work, including reinstating a manufacturer name that had
+been deliberately removed. GitHub only commits files whose content differs, so it
+accepts a stale copy silently.
+
+After any push, verify against the GitHub API rather than the raw CDN. The CDN
+caches and will serve old content or 404s for several minutes.
