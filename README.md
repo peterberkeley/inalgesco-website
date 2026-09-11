@@ -59,8 +59,12 @@ Formspree, endpoint `https://formspree.io/f/maeyvewz`, delivering to
 peter.berkeley@inalgesco.com. Tested and working. Free tier caps at 50
 submissions per month, so watch the volume if a campaign drives traffic.
 
-The page also offers a `mailto:` link to contact@inalgesco.com. Confirm that
-address actually delivers to a mailbox someone reads, or remove it.
+The page also offers a `mailto:` link, pointing at the same address. Both the
+form and the mailto link go to peter.berkeley@inalgesco.com.
+
+Formspree mail is delivered from an external sender and Microsoft 365 has been
+seen to junk it. If enquiries stop appearing, check the Junk Email folder before
+assuming the form is broken.
 
 ## Deploying
 
