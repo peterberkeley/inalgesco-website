@@ -525,3 +525,26 @@ a:hover { color: var(--brand-dark); }
 .shots { display: grid; gap: 1.25rem; margin-top: 2.25rem; }
 @media (min-width: 52rem) { .shots { grid-template-columns: 1fr 1fr; } .shots .shot { margin-top: 0; } }
 @media (min-width: 62rem) { .split--lead .shot { margin-top: 0; } }
+
+
+/* ==========================================================================
+   Savings calculator (evidence page)
+   ========================================================================== */
+.calc { margin-top: 2.5rem; border: 1px solid var(--rail); border-top: 3px solid var(--brand); background: var(--white); padding: clamp(1.4rem, 3vw, 2.2rem); }
+.calc h3 { margin: 0 0 0.4rem; }
+.calc__intro { color: var(--ink-soft); margin: 0 0 1.6rem; }
+.calc__grid { display: grid; gap: 2rem; }
+@media (min-width: 52rem) { .calc__grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); align-items: start; } }
+.calc__field { display: grid; grid-template-columns: 1fr auto; align-items: baseline; gap: 0.3rem 1rem; padding: 0.9rem 0; border-bottom: 1px solid var(--rail); }
+.calc__field:first-child { padding-top: 0; }
+.calc__field label { font-size: var(--step--1); font-weight: 600; color: var(--ink); }
+.calc__field output { font-weight: 700; font-variant-numeric: tabular-nums; color: var(--brand); }
+.calc__field input[type="range"] { grid-column: 1 / -1; width: 100%; accent-color: var(--brand); margin: 0.35rem 0 0; }
+.calc__result { background: var(--frost); border: 1px solid var(--rail); padding: 1.4rem; }
+.calc__label { display: block; font-size: var(--step--1); color: var(--ink-soft); }
+.calc__total { display: block; font-size: var(--step-3); font-weight: 700; letter-spacing: -0.03em; color: var(--ink); font-variant-numeric: tabular-nums; margin: 0.2rem 0 1rem; }
+.calc__breakdown { margin: 0; }
+.calc__breakdown div { display: flex; justify-content: space-between; gap: 1rem; padding: 0.5rem 0; border-top: 1px solid var(--rail); }
+.calc__breakdown dt { font-size: var(--step--1); color: var(--ink-soft); }
+.calc__breakdown dd { margin: 0; font-weight: 600; font-variant-numeric: tabular-nums; }
+.calc__note { font-size: var(--step--1); color: var(--ink-soft); margin: 1.4rem 0 0; max-width: 70ch; }

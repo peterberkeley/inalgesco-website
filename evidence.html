@@ -72,6 +72,45 @@
         <li><strong>Off-road disruption</strong> &mdash; engine-driven units need roughly four days off-road per major service event. No engine, no combustion components, no exposure</li>
       </ul>
       <p>The four streams net out near <strong>$23,800 per truck per year</strong>.</p>
+
+      <div class="calc" id="savings-calculator">
+        <h3>Run it for your fleet</h3>
+        <p class="calc__intro">Move the sliders to match your operation. The figures update as you go.</p>
+        <div class="calc__grid">
+          <div class="calc__inputs">
+            <div class="calc__field">
+              <label for="calc-trucks">Trucks in your fleet</label>
+              <output id="calc-trucks-out" for="calc-trucks">10</output>
+              <input id="calc-trucks" type="range" min="1" max="250" step="1" value="10">
+            </div>
+            <div class="calc__field">
+              <label for="calc-diesel">Diesel price, per US gallon</label>
+              <output id="calc-diesel-out" for="calc-diesel">$2.18</output>
+              <input id="calc-diesel" type="range" min="1.50" max="6.00" step="0.01" value="2.18">
+            </div>
+            <div class="calc__field">
+              <label for="calc-hours">Refrigeration hours per day</label>
+              <output id="calc-hours-out" for="calc-hours">12</output>
+              <input id="calc-hours" type="range" min="2" max="24" step="1" value="12">
+            </div>
+            <div class="calc__field">
+              <label for="calc-days">Operating days per year</label>
+              <output id="calc-days-out" for="calc-days">365</output>
+              <input id="calc-days" type="range" min="200" max="365" step="1" value="365">
+            </div>
+          </div>
+          <div class="calc__result" aria-live="polite">
+            <span class="calc__label">Estimated saving across your fleet, per year</span>
+            <span class="calc__total" id="calc-total">$237,855</span>
+            <dl class="calc__breakdown">
+              <div><dt>Per truck, per year</dt><dd id="calc-per-truck">$23,786</dd></div>
+              <div><dt>Over five years</dt><dd id="calc-five">$1,189,275</dd></div>
+              <div><dt>Diesel no longer burned, per year</dt><dd id="calc-gallons">54,750 gal</dd></div>
+            </dl>
+          </div>
+        </div>
+        <p class="calc__note">Assumes a Carrier 850 at its manufacturer-rated 1.25 gal/hr, scheduled service parts of $8,700, dry ice of $2,000 and off-road disruption of $2,000 per truck per year, net of ChillRail&rsquo;s own running cost. An estimate, not a quotation.</p>
+      </div>
     </div>
   </section>
 
@@ -188,5 +227,28 @@
     navigator.sendBeacon("https://berkeleyhome.net/ingest/visit", new Blob([beacon], {type:"text/plain"}));
   });
 }catch(e){}})();
-</script></body>
+</script><script>
+/* Savings calculator. Same model as the four saving streams stated above. */
+(function(){
+  var $=function(id){return document.getElementById(id);};
+  if(!$('savings-calculator')) return;
+  var GAL_PER_HR=1.25, FIXED=8700+2000+2000, CHILLRAIL=850;
+  var usd=function(n){return '$'+Math.round(n).toLocaleString('en-US');};
+  function update(){
+    var t=+$('calc-trucks').value, p=+$('calc-diesel').value, h=+$('calc-hours').value, d=+$('calc-days').value;
+    var gal=GAL_PER_HR*h*d, per=gal*p+FIXED-CHILLRAIL;
+    $('calc-trucks-out').textContent=t;
+    $('calc-diesel-out').textContent='$'+p.toFixed(2);
+    $('calc-hours-out').textContent=h;
+    $('calc-days-out').textContent=d;
+    $('calc-total').textContent=usd(per*t);
+    $('calc-per-truck').textContent=usd(per);
+    $('calc-five').textContent=usd(per*t*5);
+    $('calc-gallons').textContent=Math.round(gal*t).toLocaleString('en-US')+' gal';
+  }
+  ['calc-trucks','calc-diesel','calc-hours','calc-days'].forEach(function(id){$(id).addEventListener('input',update);});
+  update();
+})();
+</script>
+</body>
 </html>
