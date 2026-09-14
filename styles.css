@@ -548,3 +548,11 @@ a:hover { color: var(--brand-dark); }
 .calc__breakdown dt { font-size: var(--step--1); color: var(--ink-soft); }
 .calc__breakdown dd { margin: 0; font-weight: 600; font-variant-numeric: tabular-nums; }
 .calc__note { font-size: var(--step--1); color: var(--ink-soft); margin: 1.4rem 0 0; max-width: 70ch; }
+.calc__field select { font: inherit; font-size: var(--step--1); color: var(--ink); background: var(--white); border: 1px solid var(--ink-soft); padding: 0.4rem 0.55rem; }
+.calc__price { display: inline-flex; align-items: center; gap: 0.2rem; font-weight: 700; color: var(--brand); font-variant-numeric: tabular-nums; }
+.calc__price input { width: 6rem; font: inherit; font-weight: 700; color: var(--brand); background: var(--white); border: 1px solid var(--rail); padding: 0.2rem 0.4rem; text-align: right; font-variant-numeric: tabular-nums; }
+.calc__hint { grid-column: 1 / -1; font-size: var(--step--1); color: var(--ink-soft); }
+.calc__own { padding-top: 0.9rem; }
+.calc__own summary { cursor: pointer; font-size: var(--step--1); font-weight: 600; color: var(--brand); }
+.calc__own-grid { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 0.6rem 1rem; margin-top: 0.9rem; }
+.calc__own-grid label { font-size: var(--step--1); color: var(--ink); }
