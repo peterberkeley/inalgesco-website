@@ -120,6 +120,70 @@
         <div class="figure"><span class="figure__value">85%+</span><span class="figure__label">Reduction in refrigeration energy &mdash; you chill carts, not air</span></div>
         <div class="figure"><span class="figure__value">3 yrs</span><span class="figure__label">In service with no field failures</span></div>
       </div>
+
+      <div class="calc calc--quiet" id="savings-calculator">
+        <h3>Run it for your fleet</h3>
+        <p class="calc__intro">Choose your region for typical local diesel prices and currency, or enter your own figures. Then move the sliders to match your operation. A quick estimate, not a quotation.</p>
+        <div class="calc__grid">
+          <div class="calc__inputs">
+            <div class="calc__field">
+              <label for="calc-region">Region</label>
+              <select id="calc-region">
+                <option value="" selected>Choose your region</option>
+                <option value="usa">USA</option>
+                <option value="canada">Canada</option>
+                <option value="uk">United Kingdom</option>
+                <option value="europe">Europe</option>
+                <option value="middle-east">Middle East</option>
+                <option value="far-east">Far East</option>
+                <option value="australasia">Australasia</option>
+              </select>
+            </div>
+            <div class="calc__field">
+              <label for="calc-trucks">Trucks in your fleet</label>
+              <output id="calc-trucks-out" for="calc-trucks">0</output>
+              <input id="calc-trucks" type="range" min="0" max="250" step="1" value="0">
+            </div>
+            <div class="calc__field">
+              <label for="calc-diesel-num" id="calc-diesel-label">Diesel price, per US gallon</label>
+              <span class="calc__price"><span class="calc__cur">$</span><input id="calc-diesel-num" type="number" inputmode="decimal" min="0" max="99" step="0.01" value="0.00"></span>
+              <input id="calc-diesel" type="range" min="0" max="14.93" step="0.01" value="0" aria-labelledby="calc-diesel-label">
+              <span class="calc__hint" id="calc-diesel-hint">Choose your region, or enter your own price</span>
+            </div>
+            <div class="calc__field">
+              <label for="calc-hours">Refrigeration hours per day</label>
+              <output id="calc-hours-out" for="calc-hours">0</output>
+              <input id="calc-hours" type="range" min="0" max="24" step="1" value="0">
+            </div>
+            <div class="calc__field">
+              <label for="calc-days">Operating days per year</label>
+              <output id="calc-days-out" for="calc-days">0</output>
+              <input id="calc-days" type="range" min="0" max="365" step="1" value="0">
+            </div>
+            <details class="calc__own" id="calc-own">
+              <summary>Use your own costs</summary>
+              <div class="calc__own-grid">
+                <label for="calc-maint">Service parts, per truck per year</label>
+                <span class="calc__price"><span class="calc__cur">$</span><input id="calc-maint" type="number" inputmode="numeric" min="0" step="100" value="8700"></span>
+                <label for="calc-ice">Dry ice, per truck per year</label>
+                <span class="calc__price"><span class="calc__cur">$</span><input id="calc-ice" type="number" inputmode="numeric" min="0" step="100" value="2000"></span>
+                <label for="calc-disrupt">Off-road disruption, per truck per year</label>
+                <span class="calc__price"><span class="calc__cur">$</span><input id="calc-disrupt" type="number" inputmode="numeric" min="0" step="100" value="2000"></span>
+              </div>
+            </details>
+          </div>
+          <div class="calc__result" aria-live="polite">
+            <span class="calc__label">Estimated saving across your fleet, per year</span>
+            <span class="calc__total" id="calc-total">$0</span>
+            <dl class="calc__breakdown">
+              <div><dt>Per truck, per year</dt><dd id="calc-per-truck">$0</dd></div>
+              <div><dt>Over five years</dt><dd id="calc-five">$0</dd></div>
+              <div><dt>Diesel no longer burned, per year</dt><dd id="calc-fuel">0 US gal</dd></div>
+            </dl>
+          </div>
+        </div>
+        <p class="calc__note">Diesel prices are typical figures for the week of 7 September 2026, from the US Energy Information Administration, the UK government&rsquo;s weekly road fuel prices, the European Commission Weekly Oil Bulletin (euro area), Natural Resources Canada and the Australian Institute of Petroleum, with GlobalPetrolPrices.com for the Middle East and Far East, where no single official regional figure exists. Costs are converted from US dollars at European Central Bank rates for 14 September 2026. The model assumes a Carrier 850 at its manufacturer-rated 1.25 US gallons (4.7 litres) an hour, net of ChillRail&rsquo;s own running cost. <span id="calc-cur-note">Figures in US dollars.</span></p>
+      </div>
     </div>
   </section>
 
@@ -177,5 +241,6 @@
   });
 }catch(e){}})();
 </script>
+<script src="calculator.js"></script>
 </body>
 </html>
