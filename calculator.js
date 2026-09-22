@@ -40,11 +40,32 @@
     }catch(e){}
     return '';
   }
+  /* Switching region changes the CURRENCY as well as the price, and the only
+     statement of that sat at the end of a long grey footnote. So a visitor
+     flipping between regions compared a pound figure with a dollar one as if
+     they were the same unit - and below about 8 hours x 300 days the UK total
+     is the SMALLER number purely because a pound buys more, which reads as
+     "the UK saves less". It does not: the fixed costs are the same money.
+     This puts the currency against the total, where the comparison is made. */
+  function currencyLine(){
+    var el=$('calc-cur-inline');
+    if(!el){
+      var total=$('calc-total');
+      if(!total) return null;
+      el=document.createElement('span');
+      el.id='calc-cur-inline';
+      el.className='calc__cur-inline';
+      total.parentNode.insertBefore(el,total.nextSibling);
+    }
+    return el;
+  }
   function setCurrency(){
     fmt=new Intl.NumberFormat(R.loc,{style:'currency',currency:R.cur,maximumFractionDigits:0});
     sym=(fmt.formatToParts(0).filter(function(p){return p.type==='currency';})[0]||{value:'$'}).value;
     [].forEach.call(document.querySelectorAll('#savings-calculator .calc__cur'),function(el){ el.textContent=sym; });
     $('calc-cur-note').textContent='Figures in '+R.word+'.';
+    var line=currencyLine();
+    if(line) line.textContent='in '+R.word+' ('+R.cur+')';
   }
   function update(){
     var pos=function(id){ var v=+$(id).value; return v>0?v:0; };   /* blanks and negatives count as zero */

@@ -646,3 +646,13 @@ a:hover { color: var(--brand-dark); }
   object-fit: cover;
   border-top: 1px solid var(--rail);
 }
+
+/* The currency, stated where the number is read. Switching region changes the
+   unit of account, and comparing a pound total with a dollar one is the
+   easiest mistake this calculator can invite. */
+.calc__cur-inline {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: var(--step--1);
+  color: var(--ink-soft);
+}
