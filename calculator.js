@@ -18,6 +18,28 @@
     'australasia':{name:'Australian',  cur:'AUD', loc:'en-GB', unit:'L',   price:2.53, maint:12200, ice:2800, disrupt:2800, chillrail:1192, word:'Australian dollars', basis:'average'}
   };
   var R=REGIONS[''], custom=false, fmt, sym;
+  var LBL=document.querySelector('#savings-calculator .calc__label');
+  var LBL_READY=LBL?LBL.textContent:'';
+
+  function guessRegion(){
+    /* Which region to open on, from the browser time zone. No network call and
+       nothing stored, so it costs the visitor nothing and needs no consent.
+       It fills in the DIESEL PRICE only: trucks, hours and days still start at
+       zero, so the calculator still claims nothing until figures are set.
+       Without this the sliders are inert until the region dropdown is found,
+       and the obvious first move produces a row of zeros that reads as broken. */
+    try{
+      var tz=(Intl.DateTimeFormat().resolvedOptions().timeZone||'');
+      if(/^Europe\/(London|Belfast|Jersey|Guernsey|Isle_of_Man)/.test(tz)) return 'uk';
+      if(/^(Australia|Pacific\/(Auckland|Chatham))/.test(tz)) return 'australasia';
+      if(/^America\/(Toronto|Vancouver|Edmonton|Winnipeg|Halifax|St_Johns|Regina|Montreal|Moncton|Whitehorse|Yellowknife|Iqaluit)/.test(tz)) return 'canada';
+      if(/^(America|US)\//.test(tz)) return 'usa';
+      if(/^Europe\//.test(tz)) return 'europe';
+      if(/^Asia\/(Dubai|Riyadh|Qatar|Kuwait|Bahrain|Muscat|Baghdad|Tehran|Jerusalem|Amman|Beirut|Damascus|Aden)/.test(tz)) return 'middle-east';
+      if(/^Asia\//.test(tz)) return 'far-east';
+    }catch(e){}
+    return '';
+  }
   function setCurrency(){
     fmt=new Intl.NumberFormat(R.loc,{style:'currency',currency:R.cur,maximumFractionDigits:0});
     sym=(fmt.formatToParts(0).filter(function(p){return p.type==='currency';})[0]||{value:'$'}).value;
@@ -37,6 +59,9 @@
     $('calc-per-truck').textContent=fmt.format(per);
     $('calc-five').textContent=fmt.format(per*t*5);
     $('calc-fuel').textContent=Math.round(fuelYr*t).toLocaleString('en-US')+(R.unit==='gal'?' US gal':' litres');
+    /* A zero total is correct here, but on its own it reads as a broken
+       calculator. Say what is missing instead, without inventing figures. */
+    if(LBL) LBL.textContent=(h>0&&d>0&&p>0&&t>0)?LBL_READY:'Move the sliders to see your figure';
     var fresh=!custom&&!$('calc-region').value&&!p;
     $('calc-diesel-hint').textContent=fresh?'Choose your region, or enter your own price':(!p?'Enter a diesel price above zero':(custom?'Your figure':R.name+' '+R.basis+', week of 7 September 2026'));
   }
@@ -58,5 +83,7 @@
     custom=true; update();
   });
   ['calc-trucks','calc-hours','calc-days','calc-maint','calc-ice','calc-disrupt'].forEach(function(id){ $(id).addEventListener('input',update); });
+  var guessed=guessRegion();
+  if(guessed && REGIONS[guessed]) $('calc-region').value=guessed;
   applyRegion();
 })();

@@ -561,3 +561,88 @@ a:hover { color: var(--brand-dark); }
 /* Home-page variant: same calculator, lighter weight so it sits in the flow */
 .calc--quiet { border-top: 1px solid var(--rail); }
 .calc--quiet .calc__total { font-size: var(--step-2); }
+
+/* Collapsible menu ------------------------------------------------------
+   Eight links wrapped onto three rows on a phone, 107px of menu before any
+   content, on every page. Collapsed by default and opened by the button;
+   the row layout returns at 46rem where it fits on one line. */
+.nav-toggle {
+  position: absolute; top: 0.9rem; right: 0;
+  display: inline-flex; flex-direction: column; justify-content: center;
+  gap: 5px;
+  width: 44px; height: 44px;          /* the touch-target minimum */
+  padding: 0 10px;
+  background: none; border: 0; cursor: pointer;
+}
+.nav-toggle span {
+  display: block; height: 2px; width: 100%;
+  background: var(--ink); border-radius: 2px;
+  transition: transform 0.18s ease, opacity 0.18s ease;
+}
+.nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+.masthead__inner { position: relative; }
+.nav { width: 100%; }          /* so the open list and its rules span the column */
+.nav ul { display: none; }
+.nav.is-open ul {
+  display: flex; flex-direction: column; gap: 0;
+  width: 100%; padding-top: 0.3rem;
+}
+.nav.is-open li { border-top: 1px solid var(--rail); }
+.nav.is-open a { display: block; padding: 0.78rem 0; }   /* 44px tall rows */
+
+@media (min-width: 46rem) {
+  .nav-toggle { display: none; }
+  .nav { width: auto; }
+  .nav ul,
+  .nav.is-open ul {
+    display: flex; flex-direction: row; flex-wrap: wrap;
+    gap: 0.25rem 1.4rem; width: auto; padding-top: 0;
+  }
+  .nav.is-open li { border-top: 0; }
+  .nav.is-open a { display: inline-block; padding: 0.3rem 0; }
+}
+
+/* Sliders were 16px tall, well under the 44px a fingertip needs. The track
+   stays slim; only the thumb and the hit area grow. */
+#savings-calculator input[type="range"] {
+  height: 44px;
+  background: transparent;
+  -webkit-appearance: none; appearance: none;
+}
+#savings-calculator input[type="range"]::-webkit-slider-runnable-track {
+  height: 4px; border-radius: 2px; background: var(--rail);
+}
+#savings-calculator input[type="range"]::-moz-range-track {
+  height: 4px; border-radius: 2px; background: var(--rail);
+}
+#savings-calculator input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none;
+  width: 26px; height: 26px; margin-top: -11px;
+  border-radius: 50%; border: 0; background: var(--brand); cursor: pointer;
+}
+#savings-calculator input[type="range"]::-moz-range-thumb {
+  width: 26px; height: 26px;
+  border-radius: 50%; border: 0; background: var(--brand); cursor: pointer;
+}
+
+/* Hero: something to do, and something to look at ------------------------
+   The only call to action used to sit five screens down, and the first screen
+   of a site selling a physical system carried no picture of it. */
+.hero__actions {
+  display: flex; flex-wrap: wrap; gap: 0.7rem;
+  margin-top: 1.8rem;
+}
+.hero__actions .button { margin-top: 0; }
+
+.hero__shot { margin: clamp(2.2rem, 5vw, 3.5rem) 0 0; }
+.hero__shot img {
+  display: block; width: 100%;
+  height: clamp(190px, 38vw, 420px);   /* a band, not a full photo: the point
+                                          is to show the rail without pushing
+                                          the argument off the screen */
+  object-fit: cover;
+  border-top: 1px solid var(--rail);
+}

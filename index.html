@@ -21,7 +21,11 @@
     <a class="logo" href="index.html">
       <img src="inalgesco-logo.png" alt="Inalgesco" width="989" height="104">
     </a>
-    <nav class="nav" aria-label="Main">
+        <button class="nav-toggle" type="button" aria-expanded="false"
+            aria-controls="site-nav" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="nav" id="site-nav" aria-label="Main">
       <ul>
         <li><a href="index.html" aria-current="page">Home</a></li>
         <li><a href="the-problem.html">The problem</a></li>
@@ -41,8 +45,12 @@
     <div class="wrap hero__inner">
       <div>
         <h1>Your trucks are refrigerated. Your food isn&rsquo;t cold.</h1>
-        <p class="hero__lede">An airline cart is an insulated box. A refrigerated truck chills the <em>outside</em> of it. ChillRail forces filtered cold air <em>into</em> each cart instead &mdash; so the food reaches temperature, and you can prove it did.</p>
-        <p class="hero__meaning"><b>Inalgesco</b> &mdash; from the Latin, &ldquo;to become cold&rdquo;.</p>
+        <p class="hero__lede">An airline cart is an insulated box. A refrigerated truck chills the <em>outside</em> of it. ChillRail forces filtered cold air <em>into</em> each cart instead, so the food reaches temperature and you can prove it did.</p>
+        <p class="hero__actions">
+          <a class="button" href="contact.html">Arrange a 30-day trial</a>
+          <a class="button button--ghost" href="how-it-works.html">See how it works</a>
+        </p>
+        <p class="hero__meaning"><b>Inalgesco</b>, from the Latin, &ldquo;to become cold&rdquo;.</p>
       </div>
       <div class="readout">
         <dl>
@@ -55,6 +63,10 @@
         </dl>
       </div>
     </div>
+    <figure class="hero__shot">
+      <img src="chillrail-damper-run.jpg" width="1600" height="1200" fetchpriority="high"
+           alt="A run of ChillRail cart-operated dampers along the rail inside a catering high loader, each one feeding filtered cold air directly into a cart">
+    </figure>
   </section>
 
   <section class="rail-section">
@@ -242,5 +254,6 @@
 }catch(e){}})();
 </script>
 <script src="calculator.js"></script>
+<script src="nav.js"></script>
 </body>
 </html>
