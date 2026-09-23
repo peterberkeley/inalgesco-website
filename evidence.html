@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="icon" href="favicon-32.png" sizes="32x32">
 <link rel="apple-touch-icon" href="favicon-180.png">
-<link rel="stylesheet" href="styles.css?v=20260923120706">
+<link rel="stylesheet" href="styles.css?v=20260923121157">
 </head>
 <body>
 
@@ -75,7 +75,7 @@
         <li><strong>Dry ice</strong>: active refrigeration removes the requirement throughout the run</li>
         <li><strong>Off-road disruption</strong>: engine-driven units need roughly four days off-road per major service event. No engine, no combustion components, no exposure</li>
       </ul>
-      <p>The four streams net out near <strong>$23,800 per truck per year</strong>.</p>
+      <p>The four streams net out near <strong>$44,500 per truck per year</strong> at the September 2026 US diesel price of $5.97 a gallon. Fuel is the largest of the four, so the total moves with the pump price; the calculator below runs it for your own region and duty cycle.</p>
 
       <div class="calc" id="savings-calculator">
         <h3>Run it for your fleet</h3>
@@ -113,8 +113,8 @@
             </div>
             <div class="calc__field">
               <label for="calc-days">Operating days per year</label>
-              <output id="calc-days-out" for="calc-days">350</output>
-              <input id="calc-days" type="range" min="0" max="365" step="1" value="350">
+              <output id="calc-days-out" for="calc-days">365</output>
+              <input id="calc-days" type="range" min="0" max="365" step="1" value="365">
             </div>
             <details class="calc__own" id="calc-own">
               <summary>Use your own costs</summary>
@@ -256,7 +256,7 @@
     navigator.sendBeacon("https://berkeleyhome.net/ingest/visit", new Blob([beacon], {type:"text/plain"}));
   });
 }catch(e){}})();
-</script><script src="calculator.js?v=20260923120706"></script>
-<script src="nav.js?v=20260923120706"></script>
+</script><script src="calculator.js?v=20260923121157"></script>
+<script src="nav.js?v=20260923121157"></script>
 </body>
 </html>
