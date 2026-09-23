@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="icon" href="favicon-32.png" sizes="32x32">
 <link rel="apple-touch-icon" href="favicon-180.png">
-<link rel="stylesheet" href="styles.css?v=20260923121540">
+<link rel="stylesheet" href="styles.css?v=20260923122249">
 </head>
 <body>
 
@@ -115,25 +115,31 @@
     </div>
   </section>
 
-  <section class="<picture>
-  <source type="image/avif" srcset="dashboard-live-tracking-480.avif 480w, dashboard-live-tracking-960.avif 960w" sizes="(min-width: 1180px) 1100px, 92vw">
-  <source type="image/webp" srcset="dashboard-live-tracking-480.webp 480w, dashboard-live-tracking-960.webp 960w" sizes="(min-wid<picture>
-  <source type="image/avif" srcset="gps-route-trace-480.avif 480w, gps-route-trace-960.avif 960w, gps-route-trace-1600.avif 1600w" sizes="(min-width: 1180px) 1100px, 92vw">
-  <source type="image/webp" srcset="gps-route-trace-480.webp 480w, gps-route-trace-960.webp 960w, gps-route-trace-1600.webp 1600w" sizes="(min-width: 1180px) 1100px, 92vw">
-  <img src="gps-route-trace.jpg" srcset="gps-route-trace-480.jpg 480w, gps-route-trace-960.jpg 960w, gps-route-trace-1600.jpg 1600w" sizes="(min-width: 1180px) 1100px, 92vw" width="1600" height="1000" alt="Map showing the GPS route trace of a catering vehicle across a delivery run" loading="lazy">
-</picture>es="(min-width: 1180px) 1100px, 92vw" width="1170" height="2532" alt="Mobile dashboard listing each cart with its current temperature and trend chart" loading="lazy">
-</picture><div>
+  <section class="rail-section">
+    <div class="wrap">
+      <span class="rail-mark"></span>
+      <div class="split split--lead">
+        <div><h2>End-to-end proof</h2></div>
+        <div>
           <p>Every cart&rsquo;s internal temperature is logged every two seconds against the vehicle&rsquo;s GPS position, visible live on desktop or mobile.</p>
           <p>That gives you a continuous chill-chain record from dispatch cooler to aircraft door, the due diligence that neither refrigerated trucks nor dry ice can produce.</p>
         </div>
       </div>
       <figure class="shot">
-        <img src="dashboard-live-tracking.png" width="1170" height="2532" alt="Mobile dashboard listing each cart with its current temperature and trend chart" loading="lazy">
+        <picture>
+          <source type="image/avif" srcset="dashboard-live-tracking-480.avif 480w, dashboard-live-tracking-960.avif 960w" sizes="(min-width: 1180px) 1100px, 92vw">
+          <source type="image/webp" srcset="dashboard-live-tracking-480.webp 480w, dashboard-live-tracking-960.webp 960w" sizes="(min-width: 1180px) 1100px, 92vw">
+          <img src="dashboard-live-tracking.png" srcset="dashboard-live-tracking-480.jpg 480w, dashboard-live-tracking-960.jpg 960w" sizes="(min-width: 1180px) 1100px, 92vw" width="1170" height="2532" alt="Mobile dashboard listing each cart with its current temperature and trend chart" loading="lazy">
+        </picture>
         <figcaption>Every cart, live, on a phone or desktop.</figcaption>
       </figure>
 
       <figure class="shot">
-        <img src="gps-route-trace.jpg" width="1600" height="1000" alt="Map showing the GPS route trace of a catering vehicle across a delivery run" loading="lazy">
+        <picture>
+          <source type="image/avif" srcset="gps-route-trace-480.avif 480w, gps-route-trace-960.avif 960w, gps-route-trace-1600.avif 1600w" sizes="(min-width: 1180px) 1100px, 92vw">
+          <source type="image/webp" srcset="gps-route-trace-480.webp 480w, gps-route-trace-960.webp 960w, gps-route-trace-1600.webp 1600w" sizes="(min-width: 1180px) 1100px, 92vw">
+          <img src="gps-route-trace.jpg" srcset="gps-route-trace-480.jpg 480w, gps-route-trace-960.jpg 960w, gps-route-trace-1600.jpg 1600w" sizes="(min-width: 1180px) 1100px, 92vw" width="1600" height="1000" alt="Map showing the GPS route trace of a catering vehicle across a delivery run" loading="lazy">
+        </picture>
         <figcaption>The same record carries vehicle position, giving a continuous chill-chain trail from kitchen to aircraft.</figcaption>
       </figure>
 
@@ -192,6 +198,6 @@
     navigator.sendBeacon("https://berkeleyhome.net/ingest/visit", new Blob([beacon], {type:"text/plain"}));
   });
 }catch(e){}})();
-</script><script src="nav.js?v=20260923121540"></script>
+</script><script src="nav.js?v=20260923122249"></script>
 </body>
 </html>
