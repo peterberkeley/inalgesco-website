@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="icon" href="favicon-32.png" sizes="32x32">
 <link rel="apple-touch-icon" href="favicon-180.png">
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="styles.css?v=202609231120">
 </head>
 <body>
 
@@ -97,8 +97,8 @@
             </div>
             <div class="calc__field">
               <label for="calc-trucks">Trucks in your fleet</label>
-              <output id="calc-trucks-out" for="calc-trucks">0</output>
-              <input id="calc-trucks" type="range" min="0" max="250" step="1" value="0">
+              <output id="calc-trucks-out" for="calc-trucks">10</output>
+              <input id="calc-trucks" type="range" min="0" max="250" step="1" value="10">
             </div>
             <div class="calc__field">
               <label for="calc-diesel-num" id="calc-diesel-label">Diesel price, per US gallon</label>
@@ -108,13 +108,13 @@
             </div>
             <div class="calc__field">
               <label for="calc-hours">Refrigeration hours per day</label>
-              <output id="calc-hours-out" for="calc-hours">0</output>
-              <input id="calc-hours" type="range" min="0" max="24" step="1" value="0">
+              <output id="calc-hours-out" for="calc-hours">12</output>
+              <input id="calc-hours" type="range" min="0" max="24" step="1" value="12">
             </div>
             <div class="calc__field">
               <label for="calc-days">Operating days per year</label>
-              <output id="calc-days-out" for="calc-days">0</output>
-              <input id="calc-days" type="range" min="0" max="365" step="1" value="0">
+              <output id="calc-days-out" for="calc-days">350</output>
+              <input id="calc-days" type="range" min="0" max="365" step="1" value="350">
             </div>
             <details class="calc__own" id="calc-own">
               <summary>Use your own costs</summary>
@@ -256,7 +256,7 @@
     navigator.sendBeacon("https://berkeleyhome.net/ingest/visit", new Blob([beacon], {type:"text/plain"}));
   });
 }catch(e){}})();
-</script><script src="calculator.js"></script>
-<script src="nav.js"></script>
+</script><script src="calculator.js?v=202609231120"></script>
+<script src="nav.js?v=202609231120"></script>
 </body>
 </html>

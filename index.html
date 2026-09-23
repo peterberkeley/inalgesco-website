@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="icon" href="favicon-32.png" sizes="32x32">
 <link rel="apple-touch-icon" href="favicon-180.png">
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="styles.css?v=202609231120">
 </head>
 <body>
 
@@ -63,10 +63,13 @@
         </dl>
       </div>
     </div>
-    <figure class="hero__shot">
-      <img src="chillrail-damper-run.jpg" width="1600" height="1200" fetchpriority="high"
-           alt="A run of ChillRail cart-operated dampers along the rail inside a catering high loader, each one feeding filtered cold air directly into a cart">
-    </figure>
+    <div class="wrap">
+      <figure class="hero__shot">
+        <img src="chillrail-damper-run.jpg" width="1600" height="1200" fetchpriority="high"
+             alt="A run of ChillRail cart-operated dampers along the rail inside a catering high loader, each one feeding filtered cold air directly into a cart">
+        <figcaption>Filtered cold air is delivered to every cart position along the rail.</figcaption>
+      </figure>
+    </div>
   </section>
 
   <section class="rail-section">
@@ -95,11 +98,6 @@
       <span class="rail-mark"></span>
       <h2>Cool the cart, not the truck</h2>
       <p class="lede">A plenum the size of a small suitcase, mounted under the vehicle, generates filtered refrigerated air and forces it into each cart through ducts and cart-operated dampers.</p>
-      <figure class="shot">
-        <img src="chillrail-vehicle-interior.jpg" width="1600" height="1200" alt="Interior of a catering high loader with two rows of ChillRail cart-operated dampers running the length of the cart rail and the refrigeration plenum overhead" loading="lazy">
-        <figcaption>Filtered cold air is delivered to every cart position along the rail.</figcaption>
-      </figure>
-
       <div class="products">
         <article class="product">
           <h3>Vehicle ChillRail</h3>
@@ -153,8 +151,8 @@
             </div>
             <div class="calc__field">
               <label for="calc-trucks">Trucks in your fleet</label>
-              <output id="calc-trucks-out" for="calc-trucks">0</output>
-              <input id="calc-trucks" type="range" min="0" max="250" step="1" value="0">
+              <output id="calc-trucks-out" for="calc-trucks">10</output>
+              <input id="calc-trucks" type="range" min="0" max="250" step="1" value="10">
             </div>
             <div class="calc__field">
               <label for="calc-diesel-num" id="calc-diesel-label">Diesel price, per US gallon</label>
@@ -164,13 +162,13 @@
             </div>
             <div class="calc__field">
               <label for="calc-hours">Refrigeration hours per day</label>
-              <output id="calc-hours-out" for="calc-hours">0</output>
-              <input id="calc-hours" type="range" min="0" max="24" step="1" value="0">
+              <output id="calc-hours-out" for="calc-hours">12</output>
+              <input id="calc-hours" type="range" min="0" max="24" step="1" value="12">
             </div>
             <div class="calc__field">
               <label for="calc-days">Operating days per year</label>
-              <output id="calc-days-out" for="calc-days">0</output>
-              <input id="calc-days" type="range" min="0" max="365" step="1" value="0">
+              <output id="calc-days-out" for="calc-days">350</output>
+              <input id="calc-days" type="range" min="0" max="365" step="1" value="350">
             </div>
             <details class="calc__own" id="calc-own">
               <summary>Use your own costs</summary>
@@ -253,7 +251,7 @@
   });
 }catch(e){}})();
 </script>
-<script src="calculator.js"></script>
-<script src="nav.js"></script>
+<script src="calculator.js?v=202609231120"></script>
+<script src="nav.js?v=202609231120"></script>
 </body>
 </html>

@@ -16,6 +16,12 @@
   --brand-dark: #00569b;   /* hover / pressed                           */
   --steel:      #2b3d4a;   /* footer, dark band                         */
 
+  /* Motion ---------------------------------------------------------------
+     The built-in CSS easings are too weak to read as deliberate. These are
+     the only two curves on the site; do not hand-roll another. */
+  --ease-out:    cubic-bezier(0.23, 1, 0.32, 1);     /* entering and exiting */
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);     /* panels opening       */
+
   /* Type ---------------------------------------------------------------- */
   --font: "Archivo", "Helvetica Neue", Arial, sans-serif;
 
@@ -113,7 +119,10 @@ a:hover { color: var(--brand-dark); }
   height: 22px;          /* the lockup is wide; keep it modest beside the nav */
   width: auto;
 }
-.logo:hover img { opacity: 0.82; }
+.logo img { transition: opacity 150ms var(--ease-out); }
+@media (hover: hover) and (pointer: fine) {
+  .logo:hover img { opacity: 0.82; }
+}
 
 /* Nav ------------------------------------------------------------------- */
 .nav ul {
@@ -125,6 +134,7 @@ a:hover { color: var(--brand-dark); }
 }
 
 .nav a {
+  transition: color 150ms var(--ease-out), border-bottom-color 150ms var(--ease-out);
   display: inline-block;
   padding: 0.3rem 0;
   font-size: var(--step--1);
@@ -133,7 +143,9 @@ a:hover { color: var(--brand-dark); }
   text-decoration: none;
   border-bottom: 2px solid transparent;
 }
-.nav a:hover { color: var(--ink); border-bottom-color: var(--rail); }
+@media (hover: hover) and (pointer: fine) {
+  .nav a:hover { color: var(--ink); border-bottom-color: var(--rail); }
+}
 
 /* Current page marker */
 .nav a[aria-current="page"] {
@@ -402,10 +414,24 @@ a:hover { color: var(--brand-dark); }
   text-decoration: none;
   border: 2px solid var(--brand);
 }
-.button:hover {
-  background: var(--white);
-  color: var(--brand-dark);
-  border-color: var(--white);
+/* Press feedback. scale() takes the label with it, which is what makes it
+   read as a physical press rather than a colour flicker. :active needs no
+   hover gating: it is a real press on touch. */
+.button {
+  transition:
+    transform 140ms var(--ease-out),
+    background-color 160ms var(--ease-out),
+    color 160ms var(--ease-out),
+    border-color 160ms var(--ease-out);
+}
+.button:active { transform: scale(0.97); }
+
+@media (hover: hover) and (pointer: fine) {
+  .button:hover {
+    background: var(--white);
+    color: var(--brand-dark);
+    border-color: var(--white);
+  }
 }
 
 .button--ghost {
@@ -511,7 +537,20 @@ a:hover { color: var(--brand-dark); }
 
 /* Respect reduced motion ------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
-  * { animation: none !important; transition: none !important; }
+  /* Gentler, not off. Colour and opacity still carry meaning and are not
+     movement, so they stay; everything that MOVES is removed, and anything
+     that changes size resolves instantly instead of travelling. */
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+  .button:active { transform: none; }
+  .nav-toggle span { transition: opacity 180ms linear; }
+  .nav-toggle[aria-expanded="true"] span:nth-child(1),
+  .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: none; opacity: 0; }
+  .nav { transition-duration: 0.01ms; }
+  .calc__own::details-content { transition-duration: 0.01ms; }
 }
 
 
@@ -577,21 +616,41 @@ a:hover { color: var(--brand-dark); }
 .nav-toggle span {
   display: block; height: 2px; width: 100%;
   background: var(--ink); border-radius: 2px;
-  transition: transform 0.18s ease, opacity 0.18s ease;
+  transition: transform 180ms var(--ease-out), opacity 180ms var(--ease-out);
 }
 .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
 .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
 .masthead__inner { position: relative; }
-.nav { width: 100%; }          /* so the open list and its rules span the column */
-.nav ul { display: none; }
-.nav.is-open ul {
+
+/* display cannot be transitioned, so the list is never hidden with it.
+   Height is measured in nav.js and set in pixels: grid 0fr/1fr looked
+   tidier but would not resolve a row height here, and an accordion is the
+   one case where height is the honest property - there is no transform
+   that opens a panel. visibility keeps the links out of the tab order
+   while shut, delayed on the way closed so it waits for the collapse. */
+.nav { width: 100%; }
+.nav ul {
   display: flex; flex-direction: column; gap: 0;
-  width: 100%; padding-top: 0.3rem;
+  width: 100%;
+  height: 0; overflow: hidden;
+  opacity: 0; visibility: hidden;
+  transition:
+    height 200ms var(--ease-out),
+    opacity 140ms var(--ease-out),
+    visibility 0s linear 200ms;
 }
-.nav.is-open li { border-top: 1px solid var(--rail); }
-.nav.is-open a { display: block; padding: 0.78rem 0; }   /* 44px tall rows */
+.nav.is-open ul {
+  opacity: 1; visibility: visible;
+  transition:
+    height 200ms var(--ease-out),
+    opacity 180ms var(--ease-out),
+    visibility 0s;
+}
+.nav li { border-top: 1px solid var(--rail); }
+.nav li:first-child { border-top: 0; }
+.nav a { display: block; padding: 0.78rem 0; }   /* 44px tall rows */
 
 @media (min-width: 46rem) {
   .nav-toggle { display: none; }
@@ -599,10 +658,12 @@ a:hover { color: var(--brand-dark); }
   .nav ul,
   .nav.is-open ul {
     display: flex; flex-direction: row; flex-wrap: wrap;
-    gap: 0.25rem 1.4rem; width: auto; padding-top: 0;
+    gap: 0.25rem 1.4rem; width: auto;
+    height: auto; overflow: visible;
+    opacity: 1; visibility: visible; transition: none;
   }
-  .nav.is-open li { border-top: 0; }
-  .nav.is-open a { display: inline-block; padding: 0.3rem 0; }
+  .nav li, .nav.is-open li { border-top: 0; }
+  .nav a, .nav.is-open a { display: inline-block; padding: 0.3rem 0; }
 }
 
 /* Sliders were 16px tall, well under the 44px a fingertip needs. The track
@@ -639,12 +700,14 @@ a:hover { color: var(--brand-dark); }
 
 .hero__shot { margin: clamp(2.2rem, 5vw, 3.5rem) 0 0; }
 .hero__shot img {
-  display: block; width: 100%;
-  height: clamp(190px, 38vw, 420px);   /* a band, not a full photo: the point
-                                          is to show the rail without pushing
-                                          the argument off the screen */
-  object-fit: cover;
-  border-top: 1px solid var(--rail);
+  display: block;
+  width: 100%; height: auto;      /* the whole frame, never cropped */
+  border: 1px solid var(--rail);
+}
+.hero__shot figcaption {
+  margin-top: 0.7rem;
+  font-size: var(--step--1);
+  color: var(--ink-soft);
 }
 
 /* The currency, stated where the number is read. Switching region changes the
@@ -656,3 +719,35 @@ a:hover { color: var(--brand-dark); }
   font-size: var(--step--1);
   color: var(--ink-soft);
 }
+
+/* "Use your own costs" ---------------------------------------------------
+   A native <details> snaps open, teleporting six inputs into the layout.
+   ::details-content with calc-size() animates the real height without JS
+   measurement. Both are recent, so this is wrapped in @supports: where it
+   is unsupported the panel simply snaps, which is today's behaviour. */
+@supports (interpolate-size: allow-keywords) or (height: calc-size(auto, size)) {
+  .calc__own::details-content {
+    block-size: 0;
+    overflow: hidden;
+    transition:
+      block-size 240ms var(--ease-out),
+      content-visibility 240ms allow-discrete;
+  }
+  .calc__own[open]::details-content { block-size: calc-size(auto, size); }
+}
+
+/* The marker turns to point at what it opened. */
+.calc__own summary::marker { content: none; }
+.calc__own summary::-webkit-details-marker { display: none; }
+.calc__own summary::before {
+  content: "";
+  display: inline-block;
+  width: 0; height: 0;
+  margin-right: 0.5rem;
+  border-left: 5px solid currentColor;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  transform-origin: 25% 50%;
+  transition: transform 200ms var(--ease-out);
+}
+.calc__own[open] summary::before { transform: rotate(90deg); }
