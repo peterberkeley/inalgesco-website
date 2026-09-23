@@ -755,3 +755,23 @@ a:hover { color: var(--brand-dark); }
   transition: transform 200ms var(--ease-out);
 }
 .calc__own[open] summary::before { transform: rotate(90deg); }
+
+/* Touch targets -----------------------------------------------------------
+   These all sat between 21px and 34px tall, under the 44px a fingertip
+   needs. The visual size is unchanged in every case; only the area that
+   accepts a tap grows, using padding so the label stays where it was. */
+.product__link {
+  padding-block: 0.75rem;     /* 21px of text -> 44px of target */
+}
+.calc__own summary {
+  padding-block: 0.75rem;
+}
+.calc__field select,
+.calc__price input,
+.calc__own-grid input,
+.form input,
+.form textarea {
+  min-height: 44px;
+}
+/* The lockup stays 22px; the link around it becomes tappable. */
+.logo { min-height: 44px; }

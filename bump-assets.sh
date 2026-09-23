@@ -12,7 +12,7 @@
 # go stale the instant a release changes them.
 set -eu
 cd "$(dirname "$0")"
-V=$(date +%Y%m%d%H%M)
+V=$(date +%Y%m%d%H%M%S)
 
 for f in *.html; do
   # styles.css?v=... / calculator.js?v=... / nav.js?v=..., with or without a

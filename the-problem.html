@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="icon" href="favicon-32.png" sizes="32x32">
 <link rel="apple-touch-icon" href="favicon-180.png">
-<link rel="stylesheet" href="styles.css?v=202609231150">
+<link rel="stylesheet" href="styles.css?v=20260923120706">
 </head>
 <body>
 
@@ -89,7 +89,11 @@
         </div>
       </div>
       <figure class="shot shot--diagram">
-        <img src="temperature-curve-loaded-truck.png" width="1200" height="675" alt="Chart of a two-hour heat-up followed by slow truck cool-down from 18C to 4C, showing air inside the cart and tray food both above the 8C limit for hours" loading="lazy">
+        <picture>
+          <source type="image/avif" srcset="temperature-curve-loaded-truck-480.avif 480w, temperature-curve-loaded-truck-960.avif 960w" sizes="(min-width: 1180px) 1100px, 92vw">
+          <source type="image/webp" srcset="temperature-curve-loaded-truck-480.webp 480w, temperature-curve-loaded-truck-960.webp 960w" sizes="(min-width: 1180px) 1100px, 92vw">
+          <img src="temperature-curve-loaded-truck.png" srcset="temperature-curve-loaded-truck-480.jpg 480w, temperature-curve-loaded-truck-960.jpg 960w" sizes="(min-width: 1180px) 1100px, 92vw" width="1200" height="675" alt="Chart of a two-hour heat-up followed by slow truck cool-down from 18C to 4C, showing air inside the cart and tray food both above the 8C limit for hours" loading="lazy">
+        </picture>
         <figcaption>Two hours out of the dispatch chiller, then the truck cools from 18&deg;C to 4&deg;C. Air inside the cart and the tray food itself both sit above the 8&deg;C limit for hours.</figcaption>
       </figure>
 
@@ -161,6 +165,6 @@
     navigator.sendBeacon("https://berkeleyhome.net/ingest/visit", new Blob([beacon], {type:"text/plain"}));
   });
 }catch(e){}})();
-</script><script src="nav.js?v=202609231150"></script>
+</script><script src="nav.js?v=20260923120706"></script>
 </body>
 </html>

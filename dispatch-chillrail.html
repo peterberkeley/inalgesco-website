@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="icon" href="favicon-32.png" sizes="32x32">
 <link rel="apple-touch-icon" href="favicon-180.png">
-<link rel="stylesheet" href="styles.css?v=202609231150">
+<link rel="stylesheet" href="styles.css?v=20260923120706">
 </head>
 <body>
 
@@ -50,7 +50,14 @@
 
       <div class="shots">
         <figure class="shot">
-          <img src="dispatch-chillrail-box-phoenix.jpg" width="1600" height="1200" alt="Dispatch ChillRail refrigerated box mounted above the cart rail with the front panel lowered, showing the insulated interior" loading="lazy">
+          <picture>
+            <source type="image/avif" srcset="dispatch-chillrail-box-phoenix-480.avif 480w, dispatch-chillrail-box-phoenix-960.avif 960w, dispatch-chillrail-box-phoenix-1600.avif 1600w" sizes="(min-width: 1180px) 1100px, 92vw">
+            <source type="image/webp" srcset="dispatch-chillrail-box-phoenix-480.webp 480w, dispa<picture>
+  <source type="image/avif" srcset="dispatch-chillrail-box-open-480.avif 480w, dispatch-chillrail-box-open-960.avif 960w, dispatch-chillrail-box-open-1600.avif 1600w" sizes="(min-width: 1180px) 1100px, 92vw">
+  <source type="image/webp" srcset="dispatch-chillrail-box-open-480.webp 480w, dispatch-chillrail-box-open-960.webp 960w, dispatch-chillrail-box-open-1600.webp 1600w" sizes="(min-width: 1180px) 1100px, 92vw">
+  <img src="dispatch-chillrail-box-open.jpg" srcset="dispatch-chillrail-box-open-480.jpg 480w, dispatch-chillrail-box-open-960.jpg 960w, dispatch-chillrail-box-open-1600.jpg 1600w" sizes="(min-width: 1180px) 1100px, 92vw" width="1600" height="1200" alt="Dispatch ChillRail box open above the damper run, front panel hinged down against the cart rail" loading="lazy">
+</picture>" srcset="dispatch-chillrail-box-phoenix-480.jpg 480w, dispatch-chillrail-box-phoenix-960.jpg 960w, dispatch-chillrail-box-phoenix-1600.jpg 1600w" sizes="(min-width: 1180px) 1100px, 92vw" width="1600" height="1200" alt="Dispatch ChillRail refrigerated box mounted above the cart rail with the front panel lowered, showing the insulated interior" loading="lazy">
+          </picture>
           <figcaption>Installed at Phoenix.</figcaption>
         </figure>
         <figure class="shot">
@@ -158,6 +165,6 @@
     navigator.sendBeacon("https://berkeleyhome.net/ingest/visit", new Blob([beacon], {type:"text/plain"}));
   });
 }catch(e){}})();
-</script><script src="nav.js?v=202609231150"></script>
+</script><script src="nav.js?v=20260923120706"></script>
 </body>
 </html>
