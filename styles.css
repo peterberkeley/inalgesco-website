@@ -537,21 +537,38 @@ a:hover { color: var(--brand-dark); }
 
 /* Respect reduced motion ------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
-  /* Gentler, not off. Colour and opacity still carry meaning and are not
-     movement, so they stay; everything that MOVES is removed, and anything
-     that changes size resolves instantly instead of travelling. */
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    scroll-behavior: auto !important;
+  /* Fewer and gentler, not off.
+     Colour and opacity stay: they carry meaning and nothing travels.
+     Anything that moves or resizes arrives instantly instead, but the END
+     STATE is left alone, so an open menu still reads as open and the button
+     still becomes a cross. Removing the transform along with the transition
+     would delete the state indication together with the motion, which is the
+     usual way this media query does more harm than good.
+
+     There is deliberately no blanket rule here. The site has no keyframe
+     animations and no smooth scrolling, so `* { animation: none }` would
+     override nothing while hiding which motion is actually being reconsidered. */
+
+  /* The menu opens at full height at once, and still fades so the change is
+     noticed. Height is dropped from the transition rather than shortened. */
+  .nav ul            { transition: opacity 140ms linear, visibility 0s linear 140ms; }
+  .nav.is-open ul    { transition: opacity 180ms linear, visibility 0s; }
+
+  /* The panel and the markers change state without travelling to it. */
+  .calc__own::details-content,
+  .calc__own summary::before,
+  .nav-toggle span   { transition: none; }
+
+  /* Press feedback survives as colour, since a 3% shrink is the movement and
+     the acknowledgement is the point. White on brand-dark is 7.5:1. */
+  .button:active {
+    transform: none;
+    background: var(--brand-dark);
+    border-color: var(--brand-dark);
+    color: var(--white);
   }
-  .button:active { transform: none; }
-  .nav-toggle span { transition: opacity 180ms linear; }
-  .nav-toggle[aria-expanded="true"] span:nth-child(1),
-  .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: none; opacity: 0; }
-  .nav { transition-duration: 0.01ms; }
-  .calc__own::details-content { transition-duration: 0.01ms; }
 }
+
 
 
 /* ==========================================================================
